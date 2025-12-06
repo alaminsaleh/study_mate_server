@@ -174,6 +174,17 @@ async function run() {
             res.send(result);
         });
 
+        // Decrease partnerCount
+        app.put('/partners/:id/decrement', async (req, res) => {
+            const id = req.params.id;
+            const result = await partnerCollection.updateOne(
+                { _id: new ObjectId(id) },
+                { $inc: { partnerCount: -1 } }
+            );
+            res.send(result);
+        });
+
+
 
         console.log(" Connected to MongoDB successfully!");
     } catch (err) {
