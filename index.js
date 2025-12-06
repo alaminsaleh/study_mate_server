@@ -84,6 +84,20 @@ async function run() {
             res.send(result);
         });
 
+        app.patch('/partners/:id', async (req, res) => {
+            const id = req.params.id;
+            const updatePartners = req.body;
+            const query = { _id: new ObjectId(id) };
+            const update = {
+                $set: {
+                    name: updatePartners.name,
+                    age: updatePartners.age
+                }
+            }
+            const result = await partnerCollection.updateOne(query, update)
+            res.send(result)
+        })
+
 
 
 
