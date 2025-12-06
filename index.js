@@ -134,6 +134,35 @@ async function run() {
             res.send(result);
         });
 
+        app.put('/requests/:id', async (req, res) => {
+            const id = req.params.id;
+
+
+            if (!ObjectId.isValid(id)) {
+                return res.status(400).send({ message: "Invalid ID" });
+            }
+
+
+            try {
+                // Extract the field you want to update
+                const { partnerSubject } = req.body;
+
+
+                // Update explicitly only this field
+                const updatedDoc = await requestCollection.findOneAndUpdate(
+                    { _id: new ObjectId(id) },
+                    { $set: { partnerSubject } },
+                    { returnDocument: "after" }
+                );
+
+
+                res.send(updatedDoc.value); // return updated object
+            } catch (error) {
+                console.error("Update error:", error);
+                res.status(500).send({ message: "Update failed" });
+            }
+        });
+
 
         console.log(" Connected to MongoDB successfully!");
     } catch (err) {
