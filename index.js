@@ -106,6 +106,22 @@ async function run() {
         })
 
 
+        // Request Related APIs
+        app.get('/requests', async (req, res) => {
+            const email = req.query.email;
+            const query = {};
+
+
+            if (email) {
+                query.requesterEmail = email;  // FIXED HERE
+            }
+
+
+            const cursor = requestCollection.find(query);
+            const result = await cursor.toArray();
+            res.send(result);
+        });
+
 
 
         console.log(" Connected to MongoDB successfully!");
