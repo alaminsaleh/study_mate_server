@@ -26,6 +26,8 @@ async function run() {
 
         const db = client.db('studymate_db');
         const partnerCollection = db.collection('partners');
+        const requestCollection = db.collection('request');
+        const userCollection = db.collection('users');
 
 
         // Users APIs
