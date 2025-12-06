@@ -26,7 +26,7 @@ async function run() {
 
         const db = client.db('studymate_db');
         const partnerCollection = db.collection('partners');
-       
+
 
         // Users APIs
         app.post('/users', async (req, res) => {
@@ -65,7 +65,12 @@ async function run() {
             res.send(result);
         })
 
-      
+        app.get('/top-study-partners', async (req, res) => {
+            const cursor = partnerCollection.find().sort({ rating: -1 }).limit(3);
+            const result = await cursor.toArray();
+            res.send(result);
+        })
+
 
         console.log(" Connected to MongoDB successfully!");
     } catch (err) {
