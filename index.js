@@ -122,6 +122,12 @@ async function run() {
             res.send(result);
         });
 
+        app.post('/requests', async (req, res) => {
+            const newRequest = req.body;
+            const result = await requestCollection.insertOne(newRequest);
+            res.send(result);
+        })
+
 
 
         console.log(" Connected to MongoDB successfully!");
