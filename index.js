@@ -71,6 +71,9 @@ async function run() {
             res.send(result);
         })
 
+        
+
+
 
         console.log(" Connected to MongoDB successfully!");
     } catch (err) {
