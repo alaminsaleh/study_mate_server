@@ -115,7 +115,7 @@ async function run() {
 
 
             if (email) {
-                query.requesterEmail = email;  // FIXED HERE
+                query.requesterEmail = email; 
             }
 
 
